@@ -1,0 +1,17 @@
+language: node_js
+addons:
+ sonarcloud:
+  organization: abirismyname
+  token:
+   secure: 150969e167ad028aa4e68da979c4c3e78694de0b
+node_js:
+ - "8"
+install:
+  - npm i -g codecov
+  - npm i
+script:
+  - npm run lint
+  - npm run cover
+  - npm run coveralls
+  - node node_modules/.bin/eslint -f json -o eslint.report.json .
+  - sonar-scanner
